@@ -37,3 +37,6 @@ Protocol mismatch.
 bastion_IP = 35.210.209.134
 
 someinternalhost_IP = 10.132.0.2
+
+# Using xip.io and Let's Encrypt,
+I configured an internet-wide trusted certificate for the domain name https://35.210.209.134.xip.io/.
