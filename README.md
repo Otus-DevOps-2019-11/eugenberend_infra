@@ -24,7 +24,7 @@ We have configured Pritunl VPN server and set up VPN connection.
 We have configured bastion server to be a jump server for our private GCP network
 Thus we can now connect directly to someinternal bypassing bastion SSH jump.
 This can be verified by telnet:
-'''
+```
 telnet 10.132.0.2 22
 Trying 10.132.0.2...
 Connected to 10.132.0.2.
@@ -32,7 +32,8 @@ Escape character is '^]'.
 SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.8
 
 Protocol mismatch.
-'''
+```
 # Configuration
 bastion_IP = 35.210.209.134
+
 someinternalhost_IP = 10.132.0.2
