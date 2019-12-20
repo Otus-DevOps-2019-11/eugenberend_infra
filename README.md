@@ -1,5 +1,8 @@
 # eugenberend_infra
 eugenberend Infra repository
+# IP and port of puma app
+testapp_IP = 34.90.6.246
+testapp_port = 9292
 # To access someinternal host with bash one-liner,
 simply type:
 ssh -tA  35.210.209.134 ssh 10.128.0.2
@@ -38,5 +41,4 @@ bastion_IP = 35.210.209.134
 
 someinternalhost_IP = 10.132.0.2
 
-# Using xip.io and Let's Encrypt,
-I configured an internet-wide trusted certificate for the domain name https://35.210.209.134.xip.io/.
+# Using xip.io and Let's Encrypt, I configured an internet-wide trusted certificate for the domain name https://35.210.209.134.xip.io/.
