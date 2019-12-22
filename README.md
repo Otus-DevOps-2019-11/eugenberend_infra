@@ -4,6 +4,7 @@ eugenberend Infra repository
 testapp_IP = 34.90.6.246
 testapp_port = 9292
 # Command for VM creation:
+```
 gcloud compute instances create reddit-app1 \
 --boot-disk-size=10GB \
 --image-family ubuntu-1604-lts \
@@ -12,7 +13,7 @@ gcloud compute instances create reddit-app1 \
 --tags puma-server \
 --restart-on-failure \
 --metadata startup-script-url=gs://startup-script-url-puma/startup-script-url.sh
-
+```
 # To access someinternal host with bash one-liner,
 simply type:
 ssh -tA  35.210.209.134 ssh 10.128.0.2
