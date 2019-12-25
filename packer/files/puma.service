@@ -1,4 +1,4 @@
-escription=Puma HTTP Server
+Description=Puma HTTP Server
 After=network.target
 
 [Service]
