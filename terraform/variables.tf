@@ -20,3 +20,8 @@ variable zone {
   description = "Zone where VM is to be placed"
   default     = "europe-north1-a"
 }
+variable ssh_users {
+  description = "SSH users which will be created on the instance"
+  type        = list(string)
+  default     = ["appuser"]
+}

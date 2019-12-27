@@ -25,7 +25,7 @@ resource "google_compute_instance" "app" {
   }
   metadata = {
     # путь до публичного ключа
-    ssh-keys = join("\n", ["appuser:${file(var.public_key_path)}", "appuser1:${file(var.public_key_path)}"])
+    ssh-keys = join("\n", [for user in var.ssh_users : "$user:${file(var.public_key_path)}"])
   }
   connection {
     type  = "ssh"
