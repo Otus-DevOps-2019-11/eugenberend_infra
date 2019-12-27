@@ -9,6 +9,10 @@ provider "google" {
   project = var.project
   region  = var.region
 }
+resource "google_compute_project_metadata_item" "app" {
+  key   = "ssh-keys"
+  value = join("\n", [for user in var.ssh_users : "${user}:${file(var.public_key_path)}"])
+}
 resource "google_compute_instance" "app" {
   name         = "reddit-app"
   machine_type = "g1-small"
@@ -25,7 +29,7 @@ resource "google_compute_instance" "app" {
   }
   metadata = {
     # путь до публичного ключа
-    ssh-keys = join("\n", [for user in var.ssh_users : "$user:${file(var.public_key_path)}"])
+    ssh-keys = "appuser:${file(var.public_key_path)}"
   }
   connection {
     type  = "ssh"
