@@ -20,19 +20,18 @@ module "gce-lb-http" {
       protocol                        = "HTTP"
       port                            = 9292
       port_name                       = "tcp-9292"
-      timeout_sec                     = 10
+      timeout_sec                     = 12
       connection_draining_timeout_sec = null
       description                     = null
       enable_cdn                      = false
 
       health_check = {
-        check_interval_sec  = 10
-        timeout_sec         = 10
-        healthy_threshold   = null
+        check_interval_sec  = 5
+        timeout_sec         = 5
+        healthy_threshold   = 1
         unhealthy_threshold = 3
         request_path        = "/"
         port                = 9292
-        host                = null
       }
 
       groups = [
