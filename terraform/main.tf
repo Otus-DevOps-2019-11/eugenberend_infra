@@ -1,6 +1,6 @@
 terraform {
   # Версия terraform
-  # required_version >= "0.12.8"
+  required_version = ">=0.12.8"
 }
 provider "google" {
   # Версия провайдера
@@ -14,10 +14,11 @@ resource "google_compute_project_metadata_item" "app" {
   value = join("\n", [for user in var.ssh_users : "${user}:${file(var.public_key_path)}"])
 }
 resource "google_compute_instance" "app" {
-  name         = "reddit-app"
+  count        = var.instance_count
+  name         = "${var.app_name}${count.index}"
   machine_type = "g1-small"
   zone         = var.zone
-  tags         = ["reddit-app"]
+  tags         = [var.app_name]
   boot_disk {
     initialize_params {
       image = var.disk_image
@@ -59,5 +60,5 @@ resource "google_compute_firewall" "firewall_puma" {
   # Каким адресам разрешаем доступ
   source_ranges = ["0.0.0.0/0"]
   # Правило применимо для инстансов с перечисленными тэгами
-  target_tags = ["reddit-app"]
+  target_tags = [var.app_name]
 }
