@@ -11,7 +11,7 @@ resource "google_compute_instance_group" "all" {
 
 module "gce-lb-http" {
   project     = var.project
-  source      = "github.com/GoogleCloudPlatform/terraform-google-lb-http"
+  source      = "GoogleCloudPlatform/lb-http/google"
   name        = "${var.app_name}-lb"
   target_tags = [var.app_name]
 
@@ -26,10 +26,10 @@ module "gce-lb-http" {
       enable_cdn                      = false
 
       health_check = {
-        check_interval_sec  = null
-        timeout_sec         = 5
+        check_interval_sec  = 10
+        timeout_sec         = 10
         healthy_threshold   = null
-        unhealthy_threshold = null
+        unhealthy_threshold = 3
         request_path        = "/"
         port                = 9292
         host                = null
