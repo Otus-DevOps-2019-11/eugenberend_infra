@@ -37,7 +37,6 @@ module "gce-lb-http" {
 
       groups = [
         {
-          #group                        = "${var.app_name}-instance-group"
           group                        = "${google_compute_instance_group.all.self_link}"
           balancing_mode               = null
           capacity_scaler              = null
