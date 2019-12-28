@@ -11,7 +11,7 @@ resource "google_compute_instance_group" "all" {
 
 module "gce-lb-http" {
   project     = var.project
-  source      = "github.com/GoogleCloudPlatform/terraform-google-lb-http"
+  source      = "github.com/GoogleCloudPlatform/terraform-google-lb-http?ref=update-generated-readme"
   name        = "${var.app_name}-lb"
   target_tags = [var.app_name]
 
