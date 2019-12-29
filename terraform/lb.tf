@@ -32,6 +32,7 @@ module "gce-lb-http" {
         unhealthy_threshold = 3
         request_path        = "/"
         port                = 9292
+        host                = null
       }
 
       groups = [
