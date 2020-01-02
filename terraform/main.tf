@@ -26,7 +26,9 @@ resource "google_compute_instance" "app" {
   }
   network_interface {
     network = "default"
-    access_config {}
+    access_config {
+      nat_ip = "${google_compute_address.app_ip.address}"
+    }
   }
   metadata = {
     # путь до публичного ключа
@@ -61,4 +63,16 @@ resource "google_compute_firewall" "firewall_puma" {
   source_ranges = ["0.0.0.0/0"]
   # Правило применимо для инстансов с перечисленными тэгами
   target_tags = [var.app_name]
+}
+resource "google_compute_firewall" "firewall_ssh" {
+  name    = "default-allow-ssh"
+  network = "default"
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+  source_ranges = ["0.0.0.0/0"]
+}
+resource "google_compute_address" "app_ip" {
+  name = "${var.app_name}-ip"
 }
