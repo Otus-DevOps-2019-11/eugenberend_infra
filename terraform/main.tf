@@ -23,5 +23,5 @@ module "db" {
   db_disk_image   = var.db_disk_image
 }
 module "vpc" {
-  source          = "./modules/vpc"
+  source = "./modules/vpc"
 }
