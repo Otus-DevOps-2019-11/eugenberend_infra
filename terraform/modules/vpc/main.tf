@@ -1,20 +1,12 @@
-resource "google_compute_instance" "db" {
-  name         = "reddit-app-db"
-  machine_type = "g1-small"
-  zone         = var.zone
-  tags         = ["reddit-app-db"]
-  boot_disk {
-    initialize_params {
-      image = var.db_disk_image
-    }
+resource "google_compute_firewall" "firewall_puma" {
+  name    = "allow-puma-default"
+  network = "default"
+  allow {
+    protocol = "tcp"
+    ports    = ["9292"]
   }
-  network_interface {
-    network = "default"
-    access_config {}
-  }
-  metadata = {
-    ssh-keys = "appuser:${file(var.public_key_path)}"
-  }
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["reddit-app-app"]
 }
 resource "google_compute_firewall" "firewall_mongo" {
   name    = "allow-mongo-default"
@@ -25,4 +17,13 @@ resource "google_compute_firewall" "firewall_mongo" {
   }
   source_tags = ["reddit-app-app"]
   target_tags = ["reddit-app-db"]
+}
+resource "google_compute_firewall" "firewall_ssh" {
+  name    = "default-allow-ssh"
+  network = "default"
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+  source_ranges = var.source_ranges
 }
