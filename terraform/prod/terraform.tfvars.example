@@ -3,5 +3,5 @@ public_key_path  = "~/.ssh/appuser.pub"
 private_key_path = "~/.ssh/appuser"
 region           = "europe-north1"
 zone             = "europe-north1-a"
-source_ranges    = ["8.8.8.8/32"]
+source_ranges    = ["666.666.666.666/32"]
 install_app      = true
