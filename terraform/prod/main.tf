@@ -15,6 +15,8 @@ module "app" {
   public_key_path = var.public_key_path
   zone            = var.zone
   app_disk_image  = var.app_disk_image
+  db_ip           = module.db.db_ip
+  install_app     = var.install_app
 }
 module "db" {
   source          = "../modules/db"
@@ -24,5 +26,5 @@ module "db" {
 }
 module "vpc" {
   source        = "../modules/vpc"
-  source_ranges = ["34.90.193.174/32"]
+  source_ranges = var.source_ranges
 }
