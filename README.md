@@ -19,8 +19,7 @@ eugenberend Infra repository
    * Verify that <app_external_ip>:9292 URL is working
    * Verify that you can ssh to app_external_ip with appuser private key
    * Run ```terraform destroy``` to clean up
-3. Create stage environment
-   * Run ```cd ../prod``` to jump to prod directory
+3. Create prod environment
    * Run ```my_external_ip=$(dig @resolver1.opendns.com ANY myip.opendns.com +short)``` to catch your external IP address
    * Run ```sed -i -e "s/[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}/$my_external_ip/g" prod/terraform.tfvars.example``` to put your IP address into the range allowed for SSH access to our prod env
    * Run ```cd ../prod && terraform init && terraform apply -var-file="terraform.tfvars.example"```
