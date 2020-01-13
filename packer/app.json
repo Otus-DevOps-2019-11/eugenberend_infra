@@ -2,7 +2,7 @@
    "variables": {
       "project_id": "",
       "source_image_family": "",
-      "machine_type": "f1-micro",
+      "machine_type": "g1-small",
       "image_description": "",
       "disk_size": "10",
       "disk_type": "pd-standard",
@@ -15,7 +15,7 @@
          "type": "googlecompute",
          "project_id": "{{user `project_id`}}",
          "image_name": "reddit-base-{{timestamp}}",
-         "image_family": "reddit-base",
+         "image_family": "reddit-app-app-base",
          "source_image_family": "{{user `source_image_family`}}",
          "ssh_username": "appuser",
          "machine_type": "{{user `machine_type`}}",
@@ -31,11 +31,6 @@
       {
          "type": "shell",
          "script": "scripts/install_ruby.sh",
-         "execute_command": "sudo {{.Path}}"
-      },
-      {
-         "type": "shell",
-         "script": "scripts/install_mongodb.sh",
          "execute_command": "sudo {{.Path}}"
       }
    ]
