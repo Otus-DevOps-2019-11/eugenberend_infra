@@ -6,7 +6,7 @@ db_ip=$(cd ../terraform/stage && terraform show -json | jq -r '.values.root_modu
 
 case $1 in
 "--list")
-    printf '{"app": {"hosts": ["35.228.215.133"]}, "db": {"hosts": ["35.228.192.158"]}}\n'
+    printf '{"app": {"hosts": ["%s"]}, "db": {"hosts": ["%s"]}}\n' $app_ip $db_ip
     ;;
 "--host")
     printf '{"_meta": {"hostvars": {}}}\n'
