@@ -4,16 +4,32 @@ eugenberend Infra repository
 
 ## Feature list
 
-- [x] Inventory in yaml
-- [x] Inventory in "vanilla" ansible format
-- [x] Inventory in pseudo-dynamic manner
-- [x] Simple playbook to clone git repo
+- [x] Dynamic JSON inventory based on Terraform output
+- [x] Internal DB server address catched from inventory variable
+- [x] Packer builds images using ansible playbooks
 
 ## How to use
 
-1. Create stage environment
-   * Run ```cd ../terraform/stage && terraform init && terraform apply -var-file="terraform.tfvars.example"```
-2. Run ansible ping
-   * Run ```cd ../../ansible && ansible all -m ping``` to ping stage servers
-   * Change inventory with **ansible.cfg** to ./imitate_dynamic_inventory.sh. Ensure that ping results are equal
-   * Run ```cd ../terraform/stage && terraform destroy``` to clean up
+Create packer images:
+
+```shell
+packer build --var-file=packer/variables.json packer/app.json
+packer build --var-file=packer/variables.json packer/db.json
+```
+
+Configure your own terraform.tfvars based on example.
+Run terraform apply:
+
+```shell
+cd terraform/stage
+terraform apply -auto-approve
+```
+
+Run ansible playbook:
+
+```shell
+cd ../../ansible
+ansible-playbook site.yml
+```
+
+Go to app web page and check that it works.
