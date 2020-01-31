@@ -1,8 +1,8 @@
 #!/bin/bash
 
-app_external_ip=$(cd ../terraform/stage && terraform output -json | jq -r '.app_external_ip.value')
-db_external_ip=$(cd ../terraform/stage && terraform output -json | jq -r '.db_external_ip.value')
-db_internal_ip=$(cd ../terraform/stage && terraform output -json | jq -r '.db_internal_ip.value')
+app_external_ip=$(cd ../terraform/prod && terraform output -json | jq -r '.app_external_ip.value')
+db_external_ip=$(cd ../terraform/prod && terraform output -json | jq -r '.db_external_ip.value')
+db_internal_ip=$(cd ../terraform/prod && terraform output -json | jq -r '.db_internal_ip.value')
 
 case $1 in
 "--list")
