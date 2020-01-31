@@ -2,8 +2,5 @@
   hosts: app
   become: true
 
-  vars:
-    db_host: "{{ db_internal_ip }}"
-
   roles:
     - app
