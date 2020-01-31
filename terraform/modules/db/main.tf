@@ -24,14 +24,14 @@ resource "google_compute_instance" "db" {
     agent       = false
     private_key = file(var.private_key_path)
   }
-  provisioner "remote-exec" {
+  /* provisioner "remote-exec" {
     inline = [<<EOF
       set -e
       sudo sed -i 's/bindIp: 127.0.0.1/bindIp: ${self.network_interface.0.network_ip}/g' /etc/mongod.conf
       sudo systemctl restart mongod
       EOF
     ]
-  }
+  } */
 }
 
 resource "google_compute_address" "app_db_ip" {
