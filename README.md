@@ -6,7 +6,7 @@
 - [x] Encrypted vaules for user's creds
 - [x] Working on port 80
 - [x] Two environments with different dynamic inventories
-- [x] Configured Travis for extended check
+- [x] Configured Travis for extended check (partially)
 
 ## How to use
 
