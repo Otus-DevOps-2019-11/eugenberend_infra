@@ -8,8 +8,8 @@ before_install:
 - sudo unzip -o packer.zip -d /usr/local/bin/
 
 script:
-- which packer
-- packer --version
+- mv packer/variables.json.example packer/variables.json
+- find . -type f -name "*.json" | xargs -n1  packer validate
 
 notifications:
   slack:
