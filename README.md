@@ -1,6 +1,4 @@
-# eugenberend_infra
-
-eugenberend Infra repository
+[![Build Status](https://travis-ci.com/Otus-DevOps-2019-11/eugenberend_infra.svg?branch=master)](https://travis-ci.com/Otus-DevOps-2019-11/eugenberend_infra)
 
 ## Feature list
 
