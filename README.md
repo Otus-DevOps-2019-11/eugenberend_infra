@@ -1,35 +1,24 @@
-# eugenberend_infra
-
-eugenberend Infra repository
+[![Build Status](https://travis-ci.com/Otus-DevOps-2019-11/eugenberend_infra.svg?branch=master)](https://travis-ci.com/Otus-DevOps-2019-11/eugenberend_infra)
 
 ## Feature list
 
-- [x] Dynamic JSON inventory based on Terraform output
-- [x] Internal DB server address catched from inventory variable
-- [x] Packer builds images using ansible playbooks
+- [x] Separated roles for app and db
+- [x] Encrypted vaules for user's creds
+- [x] Working on port 80
+- [x] Two environments with different dynamic inventories
+- [x] Configured Travis for extended check (partially)
 
 ## How to use
 
-Create packer images:
+Create base layer:
 
 ```shell
-packer build --var-file=packer/variables.json packer/app.json
-packer build --var-file=packer/variables.json packer/db.json
+cd terraform/stage && terraform apply -var-file="terraform.tfvars.example"
 ```
 
-Configure your own terraform.tfvars based on example.
-Run terraform apply:
+Enroll application:
 
 ```shell
-cd terraform/stage
-terraform apply -auto-approve
+cd ansible
+ansible-playbook playbooks/site.yml
 ```
-
-Run ansible playbook:
-
-```shell
-cd ../../ansible
-ansible-playbook site.yml
-```
-
-Go to app web page and check that it works.
