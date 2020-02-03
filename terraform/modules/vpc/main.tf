@@ -34,5 +34,6 @@ resource "google_compute_firewall" "firewall_http" {
     protocol = "tcp"
     ports    = ["80"]
   }
-  source_ranges = var.source_ranges
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["reddit-app-app"]
 }
