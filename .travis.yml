@@ -5,8 +5,9 @@ before_install:
 - curl https://raw.githubusercontent.com/express42/otus-homeworks/2019-11/run.sh | bash
 
 script:
+- terraform --version
 - mv packer/variables.json.example packer/variables.json
-- find . -type f -name "*.json" | xargs -n1  packer validate
+- find . -type f -name "*.json" | xargs -n1  packer validate -var-file=packer/variables.json
 
 notifications:
   slack:
