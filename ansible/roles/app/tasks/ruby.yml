@@ -1,0 +1,7 @@
+- name: Install a list of required packages
+  apt:
+    pkg:
+      - ruby-full
+      - ruby-bundler
+      - build-essential
+  tags: ruby
