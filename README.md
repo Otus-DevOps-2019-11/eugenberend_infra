@@ -2,23 +2,24 @@
 
 ## Feature list
 
-- [x] Separated roles for app and db
-- [x] Encrypted vaules for user's creds
-- [x] Working on port 80
-- [x] Two environments with different dynamic inventories
+- [x] Created VMs with vagrant. Installed app on these VMs
+- [x] Configured redirection to http port
+- [x] Created virtualenv for molecule tests (excluded from repository)
+- [x] Added test to prove tcp/27017 responds (excluded from repository):
+```python
+# check if listening on 27017
+def test_port(host):
+    address = host.addr("localhost")
+    assert address.port(27017).is_reachable
+```
 - [x] Configured Travis for extended check (partially)
 
 ## How to use
 
-Create base layer:
+Create virtual machines with fully provisioned app:
 
 ```shell
-cd terraform/stage && terraform apply -var-file="terraform.tfvars.example"
+cd ansible && vagrant up
 ```
 
-Enroll application:
-
-```shell
-cd ansible
-ansible-playbook playbooks/site.yml
-```
+Check http://10.10.10.20 responds.
